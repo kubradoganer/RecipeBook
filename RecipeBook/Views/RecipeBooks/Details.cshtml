@@ -1,0 +1,59 @@
+﻿@model DataAccess.Entities.RecipeBook
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    <h4 class="card-header">Recipe Book Details </h4>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.FullName)
+            </dd>
+        </dl>
+        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a class="btn btn-secondary btn-sm" asp-action="Index">Back to List</a>
+    </div>
+</div>
+<div class="card mt-4">
+    <h5 class="card-header">Recipe Book Items (Recipes)</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-primary btn-sm" asp-route="recipebookitemcreate" asp-route-recipebookid="@Model.Id">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Recipe
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecipeBookItems)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(recipeBookItem => item.Recipe.Name)
+                        </td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" asp-route="recipebookitemedit" asp-route-recipebookid="@Model.Id" asp-route-id="@item.Id">Edit</a> |
+                            <a class="btn btn-danger btn-sm" asp-route="recipebookitemdelete" asp-route-recipebookid="@Model.Id" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

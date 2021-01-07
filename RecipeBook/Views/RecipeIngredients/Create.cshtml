@@ -1,0 +1,44 @@
+﻿@model DataAccess.Entities.RecipeIngredient
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="card">
+    <h4 class="card-header">Create Ingredient</h4>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="RecipeId" class="control-label"></label>
+                        <select disabled asp-for="RecipeId" class="form-control" asp-items="ViewBag.RecipeId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IngredientTypeId" class="control-label"></label>
+                        <select asp-for="IngredientTypeId" class="form-control" asp-items="ViewBag.IngredientTypeId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MeasurementTypeId" class="control-label"></label>
+                        <select asp-for="MeasurementTypeId" class="form-control" asp-items="ViewBag.MeasurementTypeId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label"></label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" /> |
+                        <a class="btn btn-secondary" asp-controller="Recipes" asp-action="Details" asp-route-id="@Model.Recipe.Id">Back to List</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

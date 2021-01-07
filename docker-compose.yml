@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  recipebook.db: 
+    image: postgres
+    container_name: recipebook.db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=itu
+      - POSTGRES_DB=recipebookdb
+      - ALLOW_IP_RANGE='0.0.0.0/0'
+      - TZ=Asia/Istanbul
+    ports:
+      - "5432:5432"
+    volumes:
+       - postgresdb:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: recipebook.pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@itu.edu.tr}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-itu}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    volumes:
+       - pgadmin:/var/lib/pgadmin 
+    depends_on:
+      - "recipebook.db"
+  recipebook:
+    image: ${DOCKER_REGISTRY-}recipebook
+    environment:
+      - TZ=Asia/Istanbul
+    build:
+      context: .
+      dockerfile: RecipeBook/Dockerfile
+    ports:
+      - "5001:80"
+volumes:
+  postgresdb:
+  pgadmin:

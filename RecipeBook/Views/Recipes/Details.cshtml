@@ -1,0 +1,108 @@
+﻿@model DataAccess.Entities.Recipe
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    <h4 class="card-header">Recipe Details </h4>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.RecipeType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.RecipeType.Name)
+            </dd>
+            <dt class="col-sm-2">
+                User
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CreatedUser.FullName)
+            </dd>
+        </dl>
+        <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a class="btn btn-secondary btn-sm" asp-action="Index">Back to List</a>
+    </div>
+</div>
+<div class="card mt-4">
+    <h5 class="card-header">Recipe Ingredients</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-primary btn-sm" asp-route="recipeingredientcreate" asp-route-recipeid="@Model.Id">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Measurement Type
+                    </th>
+                    <th>
+                        Ingredient Type
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecipeIngredients)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Amount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeasurementType.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IngredientType.Name)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning btn-sm" asp-route="recipeingredientedit" asp-route-recipeid="@Model.Id" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-danger btn-sm" asp-route="recipeingredientdelete" asp-route-recipeid="@Model.Id" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card mt-4">
+    <h5 class="card-header">Recipe Tags</h5>
+    <div class="card-body">
+        <p>
+            <a class="btn btn-primary btn-sm" asp-route="recipetagcreate" asp-route-recipeid="@Model.Id">Create New</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tag
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.RecipeTags)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tag.Name)
+                        </td>
+                        <td>
+                            <a class="btn btn-danger btn-sm" asp-route="recipetagdelete" asp-route-recipeid="@Model.Id" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
