@@ -70,6 +70,7 @@ namespace DataAccess.Context
                 new IngredientType { Id = 40, Name = "Pulbiber" },
                 new IngredientType { Id = 41, Name = "Tereyağ" }
             );
+
             modelBuilder.Entity<IngredientType>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 42);
@@ -92,6 +93,7 @@ namespace DataAccess.Context
                 new MeasurementType { Id = 15, Name = "Yaprak" },
                 new MeasurementType { Id = 16, Name = "25 ml" }
             );
+
             modelBuilder.Entity<MeasurementType>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 17);
@@ -104,6 +106,7 @@ namespace DataAccess.Context
                 new RecipeType { Id = 5, Name = "Şerbetli Tatlılar" },
                 new RecipeType { Id = 6, Name = "Çikolatalı  Tatlılar" }
             );
+
             modelBuilder.Entity<RecipeType>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 7);
@@ -120,6 +123,7 @@ namespace DataAccess.Context
                 new Tag { Id = 9, Name = "Az Kalorili" },
                 new Tag { Id = 10, Name = "Etli" }
             );
+
             modelBuilder.Entity<Tag>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 11);
@@ -133,6 +137,7 @@ namespace DataAccess.Context
                 new User { Id = 6, FirstName = "Pierce", LastName = "Brosnan", Username = "brosnan", PasswordHash = "" },
                 new User { Id = 7, FirstName = "Ewan", LastName = "McGregor", Username = "mcgregor", PasswordHash = "" }
             );
+
             modelBuilder.Entity<User>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 8);
@@ -145,6 +150,7 @@ namespace DataAccess.Context
                     new Recipe { Id = 5, Name = "Et Sote", RecipeTypeId = 4, CreatedUserId = 1 },
                     new Recipe { Id = 6, Name = "Tavuklu Pilav", RecipeTypeId = 2, CreatedUserId = 1 }
                 );
+
             modelBuilder.Entity<Recipe>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 7);
@@ -191,6 +197,7 @@ namespace DataAccess.Context
                 new RecipeIngredient { Id = 39, RecipeId = 6, IngredientTypeId = 41, MeasurementTypeId = 13, Amount = 25 },
                 new RecipeIngredient { Id = 40, RecipeId = 6, IngredientTypeId = 28, MeasurementTypeId = 13, Amount = 10 }
            );
+
             modelBuilder.Entity<RecipeIngredient>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 41);
@@ -213,6 +220,7 @@ namespace DataAccess.Context
                 new RecipeTag { Id = 15, RecipeId = 6, TagId = 6 },
                 new RecipeTag { Id = 16, RecipeId = 6, TagId = 8 }
             );
+
             modelBuilder.Entity<RecipeTag>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 17);
@@ -257,6 +265,7 @@ namespace DataAccess.Context
                 new RecipeBookItem { Id = 23, RecipeId = 6, RecipeBookId = 7 },
                 new RecipeBookItem { Id = 24, RecipeId = 4, RecipeBookId = 7 }
             );
+
             modelBuilder.Entity<RecipeBookItem>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 25);
@@ -267,6 +276,7 @@ namespace DataAccess.Context
                 new Menu { Id = 3, Name = "Tatlı ve Daha Fazlası" },
                 new Menu { Id = 4, Name = "Pratik Menü" }
             );
+
             modelBuilder.Entity<Menu>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 5);
@@ -279,198 +289,10 @@ namespace DataAccess.Context
                 new MenuItem { Id = 5, RecipeId = 3, MenuId = 3 },
                 new MenuItem { Id = 6, RecipeId = 2, MenuId = 4 }
             );
+
             modelBuilder.Entity<MenuItem>()
                 .Property(i => i.Id)
                 .HasIdentityOptions(startValue: 7);
-        }
-
-        public void DataSeed()
-        {
-            if (!RecipeBooks.Any())
-            {
-                //List<IngredientType> ingredientTypeList = new List<IngredientType>()
-                //{
-                //    new IngredientType { Name = "Su" },
-                //    new IngredientType { Name = "Süt" },
-                //    new IngredientType { Name = "Şeker" },
-                //    new IngredientType { Name = "Un" },
-                //    new IngredientType { Name = "Tuz" },
-                //    new IngredientType { Name = "Çikolata" },
-                //    new IngredientType { Name = "Kakao" },
-                //    new IngredientType { Name = "Kabartma Tozu" },
-                //    new IngredientType { Name = "Vanilin" },
-                //    new IngredientType { Name = "Domates" },
-                //    new IngredientType { Name = "Marul" },
-                //    new IngredientType { Name = "Salatalık" },
-                //    new IngredientType { Name = "Soğan" },
-                //    new IngredientType { Name = "Turşu" },
-                //    new IngredientType { Name = "Limon" },
-                //    new IngredientType { Name = "Lime" },
-                //    new IngredientType { Name = "Bisküvi" },
-                //    new IngredientType { Name = "Krema" },
-                //    new IngredientType { Name = "Buğday Nişastası" },
-                //    new IngredientType { Name = "Mısır Nişastası" },
-                //    new IngredientType { Name = "Nutella" },
-                //    new IngredientType { Name = "Sirke" },
-                //    new IngredientType { Name = "Milföy" },
-                //    new IngredientType { Name = "Sosis" },
-                //    new IngredientType { Name = "Salça" },
-                //    new IngredientType { Name = "Kaşar Peyniri" },
-                //    new IngredientType { Name = "Mozerella" },
-                //    new IngredientType { Name = "Sıvıyağ" },
-                //    new IngredientType { Name = "Zeytinyağ" },
-                //    new IngredientType { Name = "Roka" },
-                //    new IngredientType { Name = "Tavuk" },
-                //    new IngredientType { Name = "Et" },
-                //    new IngredientType { Name = "Balık" },
-                //    new IngredientType { Name = "Kemalpaşa" },
-                //    new IngredientType { Name = "Biber" },
-                //    new IngredientType { Name = "Pirinç" },
-                //    new IngredientType { Name = "Tavuk Suyu" },
-                //    new IngredientType { Name = "Kekik" },
-                //    new IngredientType { Name = "Karabiber" },
-                //    new IngredientType { Name = "Pulbiber" },
-                //    new IngredientType { Name = "Tereyağ" }
-                //};
-
-                //foreach (var ingredientType in ingredientTypeList)
-                //{
-                //    IngredientTypes.Add(ingredientType);
-                //    SaveChanges();
-                //}
-
-                //List<RecipeType> recipeTypes = new List<RecipeType>()
-                //{
-                //    new RecipeType { Id = 1, Name = "Sütlü Tatlılar" },
-                //    new RecipeType { Id = 2, Name = "Tavuk Yemekleri" },
-                //    new RecipeType { Id = 3, Name = "Salatalar" },
-                //    new RecipeType { Id = 4, Name = "Et Yemekleri" },
-                //    new RecipeType { Id = 5, Name = "Şerbetli Tatlılar" },
-                //    new RecipeType { Id = 6, Name = "Çikolatalı  Tatlılar" }
-                //};
-
-                //RecipeTypes.AddRange(recipeTypes);
-
-                //List<User> users = new List<User>()
-                //{
-                //    new User { Id = 1, FirstName = "Kübra", LastName = "Doğan Er", Username = "dogankub", PasswordHash = "sffsafsfsfsas" },
-                //    new User { Id = 2, FirstName = "Ralph", LastName = "Fiennes", Username = "fiennes", PasswordHash = "" },
-                //    new User { Id = 3, FirstName = "Roy", LastName = "Scheider", Username = "scheider", PasswordHash = "" },
-                //    new User { Id = 4, FirstName = "John", LastName = "Candy", Username = "candy", PasswordHash = "" },
-                //    new User { Id = 5, FirstName = "Steve", LastName = "Buscemi", Username = "buscemi", PasswordHash = "" },
-                //    new User { Id = 6, FirstName = "Pierce", LastName = "Brosnan", Username = "brosnan", PasswordHash = "" },
-                //    new User { Id = 7, FirstName = "Ewan", LastName = "McGregor", Username = "mcgregor", PasswordHash = "" }
-                //};
-
-                //Users.AddRange(users);
-
-                //List<Recipe> recipes = new List<Recipe>()
-                //{
-                //    new Recipe { Id = 1, Name = "İzmir Bombası", RecipeTypeId = 6, CreatedUserId = 1 },
-                //    new Recipe { Id = 2, Name = "Tavuklu Salata", RecipeTypeId = 3, CreatedUserId = 4 },
-                //    new Recipe { Id = 3, Name = "Kemalpaşa", RecipeTypeId = 5, CreatedUserId = 2 },
-                //    new Recipe { Id = 4, Name = "Tavuk Sote", RecipeTypeId = 2, CreatedUserId = 3 },
-                //    new Recipe { Id = 5, Name = "Et Sote", RecipeTypeId = 4, CreatedUserId = 1 },
-                //    new Recipe { Id = 6, Name = "Tavuklu Pilav", RecipeTypeId = 2, CreatedUserId = 1 }
-                //};
-
-                //Recipes.AddRange(recipes);
-
-                //List<Menu> menuList = new List<Menu>()
-                //{
-                //    new Menu { Id = 1, Name = "Akşam Yemegi" },
-                //    new Menu { Id = 2, Name = "Lezzetli Bir Mola" },
-                //    new Menu { Id = 3, Name = "Tatlı ve Daha Fazlası" },
-                //    new Menu { Id = 4, Name = "Pratik Menü" }
-                //};
-
-                //Menus.AddRange(menuList);
-
-                //List<MenuItem> menuItems = new List<MenuItem>()
-                //{
-                //     new MenuItem { Id = 1, RecipeId = 2, MenuId = 1 },
-                //     new MenuItem { Id = 2, RecipeId = 3, MenuId = 1 },
-                //     new MenuItem { Id = 3, RecipeId = 1, MenuId = 2 },
-                //     new MenuItem { Id = 4, RecipeId = 1, MenuId = 3 },
-                //     new MenuItem { Id = 5, RecipeId = 3, MenuId = 3 },
-                //     new MenuItem { Id = 6, RecipeId = 2, MenuId = 4 }
-                //};
-
-                //MenuItems.AddRange(menuItems);
-
-                //SaveChanges();
-
-                //IngredientTypes.Add(new IngredientType { Name = "Su" });
-                //IngredientTypes.Add(new IngredientType { Name = "Süt" });
-                //IngredientTypes.Add(new IngredientType { Name = "Şeker" });
-                //IngredientTypes.Add(new IngredientType { Name = "Un" });
-                //IngredientTypes.Add(new IngredientType { Name = "Tuz" });
-                //IngredientTypes.Add(new IngredientType { Name = "Çikolata" });
-                //IngredientTypes.Add(new IngredientType { Name = "Kakao" });
-                //IngredientTypes.Add(new IngredientType { Name = "Kabartma Tozu" });
-                //IngredientTypes.Add(new IngredientType { Name = "Vanilin" });
-                //IngredientTypes.Add(new IngredientType { Name = "Domates" });
-                //IngredientTypes.Add(new IngredientType { Name = "Marul" });
-                //IngredientTypes.Add(new IngredientType { Name = "Salatalık" });
-                //IngredientTypes.Add(new IngredientType { Name = "Soğan" });
-                //IngredientTypes.Add(new IngredientType { Name = "Turşu" });
-                //IngredientTypes.Add(new IngredientType { Name = "Limon" });
-                //IngredientTypes.Add(new IngredientType { Name = "Lime" });
-                //IngredientTypes.Add(new IngredientType { Name = "Bisküvi" });
-                //IngredientTypes.Add(new IngredientType { Name = "Krema" });
-                //IngredientTypes.Add(new IngredientType { Name = "Buğday Nişastası" });
-                //IngredientTypes.Add(new IngredientType { Name = "Mısır Nişastası" });
-                //IngredientTypes.Add(new IngredientType { Name = "Nutella" });
-                //IngredientTypes.Add(new IngredientType { Name = "Sirke" });
-                //IngredientTypes.Add(new IngredientType { Name = "Milföy" });
-                //IngredientTypes.Add(new IngredientType { Name = "Sosis" });
-                //IngredientTypes.Add(new IngredientType { Name = "Salça" });
-                //IngredientTypes.Add(new IngredientType { Name = "Kaşar Peyniri" });
-                //IngredientTypes.Add(new IngredientType { Name = "Mozerella" });
-                //IngredientTypes.Add(new IngredientType { Name = "Sıvıyağ" });
-                //IngredientTypes.Add(new IngredientType { Name = "Zeytinyağ" });
-                //IngredientTypes.Add(new IngredientType { Name = "Roka" });
-                //IngredientTypes.Add(new IngredientType { Name = "Tavuk" });
-                //IngredientTypes.Add(new IngredientType { Name = "Et" });
-                //IngredientTypes.Add(new IngredientType { Name = "Balık" });
-                //IngredientTypes.Add(new IngredientType { Name = "Kemalpaşa" });
-                //IngredientTypes.Add(new IngredientType { Name = "Biber" });
-                //IngredientTypes.Add(new IngredientType { Name = "Pirinç" });
-                //IngredientTypes.Add(new IngredientType { Name = "Tavuk Suyu" });
-                //IngredientTypes.Add(new IngredientType { Name = "Kekik" });
-                //IngredientTypes.Add(new IngredientType { Name = "Karabiber" });
-                //IngredientTypes.Add(new IngredientType { Name = "Pulbiber" });
-                //IngredientTypes.Add(new IngredientType { Name = "Tereyağ" });
-
-
-                //MeasurementTypes.Add(new MeasurementType { Name = "250 ml" }),
-                //     new MeasurementType { Name = "125 ml" },
-                //     new MeasurementType { Name = "50 ml" },
-                //     new MeasurementType { Name = "Su Barağı" },
-                //     new MeasurementType { Name = "Çay Bardağı" },
-                //     new MeasurementType { Name = "Yemek Kaşığı" },
-                //     new MeasurementType { Name = "Çay Kaşığı" },
-                //     new MeasurementType { Name = "Tatlı Kaşığı" },
-                //     new MeasurementType { Name = "500 ml" },
-                //     new MeasurementType { Name = "1000 ml" },
-                //     new MeasurementType { Name = "1 pk" },
-                //     new MeasurementType { Name = "1 adet" },
-                //     new MeasurementType { Name = "Gram" },
-                //     new MeasurementType { Name = "Çimdik" },
-                //     new MeasurementType { Name = "Yaprak" },
-                //     new MeasurementType { Name = "25 ml" }
-
-                // modelBuilder.Entity<RecipeType>().HasData(
-                //     new RecipeType { Id = 1, Name = "Sütlü Tatlılar" },
-                //     new RecipeType { Id = 2, Name = "Tavuk Yemekleri" },
-                //     new RecipeType { Id = 3, Name = "Salatalar" },
-                //     new RecipeType { Id = 4, Name = "Et Yemekleri" },
-                //     new RecipeType { Id = 5, Name = "Şerbetli Tatlılar" },
-                //     new RecipeType { Id = 6, Name = "Çikolatalı  Tatlılar" }
-                // );
-
-                //SaveChanges();
-            }
         }
     }
 }

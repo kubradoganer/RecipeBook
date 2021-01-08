@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Context;
 using DataAccess.Entities;
-using DataAccess.Repositories;
 
 namespace RecipeBook.Controllers
 {
     public class RecipesController : Controller
     {
         private readonly RecipeBookContext _context;
-        private readonly RecipeRepository _recipeRepository;
 
-
-        public RecipesController(RecipeBookContext context, RecipeRepository recipeRepository)
+        public RecipesController(RecipeBookContext context)
         {
             _context = context;
-            _recipeRepository = recipeRepository;
         }
 
         // GET: Recipes
@@ -123,7 +117,8 @@ namespace RecipeBook.Controllers
             {
                 try
                 {
-                    _recipeRepository.UpdateWithSave(recipe);
+                    _context.Update(recipe);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
